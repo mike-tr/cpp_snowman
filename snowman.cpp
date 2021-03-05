@@ -31,7 +31,7 @@ string pbase[4] = {" : ", "\" \"", "___", "   "};
 int get_id(int *num) {
     int id = *num % 10;
     if (id == 0 || id > 4) {
-        throw invalid_argument{"all characters must be between 1-4, included."};
+        throw invalid_argument{"Invalid code : \'" + to_string(id) + "\' all characters must be between 1-4, included."};
     }
     *num /= 10;
     return id;
