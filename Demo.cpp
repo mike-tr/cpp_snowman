@@ -19,12 +19,15 @@ _===_
 ( : )
 	*/
     cout << ariel::snowman(33232124) << endl; /* Should print:
+	
    _
   /_\
 \(o_O)
  (] [)>
  (   )
 	*/
+
+    cout << ariel::snowman(44444432) << endl;
     try {
         cout << ariel::snowman(5) << endl; // Exception - not a valid code
     } catch (exception &ex) {
