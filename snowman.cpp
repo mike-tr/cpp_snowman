@@ -54,14 +54,17 @@ void add_body_part(const int parts[], int level, bool frontspace, string *output
         // add hat
         *output += frontspace ? phats_full[parts[hat]] : phats[parts[hat]];
     } else if (level == 1) {
+        // add face level
         *output += pleft_arm_up[parts[left_arm]];                                                   // add left arm
         *output += "(" + peye[parts[left_eye]] + pnose[parts[nose]] + peye[parts[right_eye]] + ")"; // add body
         *output += pright_arm_up[parts[right_arm]] + "\n";                                          // add right arm
     } else if (level == 2) {
+        // add torso level
         *output += pleft_arm_down[parts[left_arm]];
         *output += "(" + ptorso[parts[torso]] + ")";
         *output += pright_arm_down[parts[right_arm]] + "\n";
     } else if (level == 3) {
+        // add base level
         if (frontspace) {
             *output += " ";
         }
