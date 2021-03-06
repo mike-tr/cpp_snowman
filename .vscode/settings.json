@@ -3,6 +3,7 @@
         "iostream": "cpp",
         "stdexcept": "cpp",
         "xstring": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "array": "cpp"
     }
 }

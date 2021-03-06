@@ -2,5 +2,5 @@
 #include <string>
 
 namespace ariel {
-std::string snowman(int id);
+std::string snowman(int input);
 }

@@ -5,9 +5,12 @@
 
 using namespace std;
 
-#define NUM_PARTS 8
-#define INDEX_OFFSET -1
-#define NUM_LEVELS 4
+const int NUM_PARTS = 8;
+const int INDEX_OFFSET = -1;
+const int NUM_LEVELS = 4;
+
+const int max_bound = 99999999;
+const int min_bound = 10000000;
 
 // All the bases for the snowman, as had might have to lines we seperate it into 2 sets, those with exatra space,
 // and those without an extra space.
@@ -29,11 +32,12 @@ string ptorso[4] = {" : ", "] [", "> <", "   "};
 string pbase[4] = {" : ", "\" \"", "___", "   "};
 
 int get_id(int *num) {
-    int id = *num % 10;
+    const int base = 10;
+    int id = *num % base;
     if (id == 0 || id > 4) {
         throw invalid_argument{"Invalid code : \'" + to_string(id) + "\' all characters must be between 1-4, included."};
     }
-    *num /= 10;
+    *num /= base;
     return id;
 }
 
@@ -74,7 +78,7 @@ void add_body_part(const int parts[], int level, bool frontspace, string *output
 
 namespace ariel {
 string snowman(int input) {
-    if (input < 10000000 || input > 99999999) {
+    if (input < min_bound || input > max_bound) {
         throw logic_error{"Invalid code: \'" + to_string(input) + "\'"};
     }
     int parts[NUM_PARTS] = {0};
@@ -84,7 +88,7 @@ string snowman(int input) {
 
     bool spaces = parts[parts_id::left_arm] != 4 + INDEX_OFFSET;
 
-    string s_output = "";
+    string s_output;
     for (int i = 0; i < NUM_LEVELS; i++) {
         add_body_part(parts, i, spaces, &s_output);
     }
