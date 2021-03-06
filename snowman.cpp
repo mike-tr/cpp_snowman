@@ -79,7 +79,7 @@ void add_body_part(const int parts[], int level, bool frontspace, string *output
 namespace ariel {
 string snowman(int input) {
     if (input < min_bound || input > max_bound) {
-        throw logic_error{"Invalid code: \'" + to_string(input) + "\'"};
+        throw invalid_argument{"Invalid code \'" + to_string(input) + "\'"};
     }
     int parts[NUM_PARTS] = {0};
     for (int i = 0; i < NUM_PARTS; i++) {

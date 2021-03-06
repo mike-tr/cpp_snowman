@@ -86,4 +86,13 @@ TEST_CASE("Bad snowman code") {
     /* Add more checks here */
 }
 
+TEST_CASE("Check Throw message") {
+    CHECK_THROWS_WITH_MESSAGE(snowman(5), "Invalid code '5'", "");
+    CHECK_THROWS_WITH_MESSAGE(snowman(5050), "Invalid code '5050'", "");
+    CHECK_THROWS_WITH_MESSAGE(snowman(-50), "Invalid code '-50'", "");
+    CHECK_THROWS_WITH_MESSAGE(snowman(-5050), "Invalid code '-5050'", "");
+    CHECK_THROWS_WITH_MESSAGE(snowman(123456789), "Invalid code '123456789'", "");
+    CHECK_THROWS_WITH_MESSAGE(snowman(-123456789), "Invalid code '-123456789'", "");
+}
+
 /* Add more test cases here */
