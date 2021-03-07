@@ -43,20 +43,6 @@ TEST_CASE("Good snowman code") {
 }
 
 TEST_CASE("Bad snowman code") {
-    for (int n = 2; n < 10; n++) {
-        if (n == 8) {
-            continue;
-        }
-        int t = 1;
-        int k = 5;
-        for (int i = 1; i < n; i++) {
-            t = t * 10 + 1;
-            k = k * 10 + 1;
-        }
-        CHECK_THROWS(snowman(k));
-        CHECK_THROWS_AS(snowman(t), logic_error);
-    }
-
     CHECK_THROWS(snowman(555));
     CHECK_THROWS_AS(snowman(555), logic_error);
     CHECK_THROWS_AS(snowman(11114511), invalid_argument);
@@ -93,6 +79,28 @@ TEST_CASE("Check Throw message") {
     CHECK_THROWS_WITH_MESSAGE(snowman(-5050), "Invalid code '-5050'", "");
     CHECK_THROWS_WITH_MESSAGE(snowman(123456789), "Invalid code '123456789'", "");
     CHECK_THROWS_WITH_MESSAGE(snowman(-123456789), "Invalid code '-123456789'", "");
+}
+
+TEST_CASE("loop check") {
+    for (int n = 2; n < 10; n++) {
+        if (n == 8) {
+            continue;
+        }
+        int t = 1;
+        int k = 5;
+        for (int i = 1; i < n; i++) {
+            t = t * 10 + 1;
+            k = k * 10 + 1;
+        }
+        CHECK_THROWS(snowman(k));
+        CHECK_THROWS_AS(snowman(t), logic_error);
+    }
+
+    int start = 11111111;
+    for (int i = 1; i < 10000001; i *= 10) {
+        CHECK_NOTHROW(snowman(start));
+        start += i;
+    }
 }
 
 /* Add more test cases here */
