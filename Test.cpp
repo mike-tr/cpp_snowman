@@ -97,9 +97,11 @@ TEST_CASE("loop check") {
     }
 
     int start = 11111111;
-    for (int i = 1; i < 10000001; i *= 10) {
-        CHECK_NOTHROW(snowman(start));
-        start += i;
+    for (int j = 0; j < 3; j++) {
+        for (int i = 1; i < 10000001; i *= 10) {
+            CHECK_NOTHROW(snowman(start));
+            start += i;
+        }
     }
 }
 
