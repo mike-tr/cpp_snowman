@@ -43,3 +43,11 @@ https://codegolf.stackexchange.com/q/49671/12019
 ולכן כל שינוי שתעשו בקבצים הקיימים יימחק.
 
 </div>
+
+
+How to run test:
+
+dos2unix grade
+dos2unix grade_utils
+
+bash grade
