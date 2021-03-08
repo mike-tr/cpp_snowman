@@ -19,7 +19,6 @@ using namespace ariel;
 using namespace std;
 
 TEST_CASE("Good snowman code") {
-
     CHECK(snowman(11114411) == string("_===_\n(.,.)\n( : )\n( : )"));
 
     CHECK(snowman(33232124) == string("   _\n  /_\\\n\\(o_O)\n (] [)>\n (   )"));

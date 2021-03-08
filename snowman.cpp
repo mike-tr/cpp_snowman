@@ -32,6 +32,7 @@ string ptorso[4] = {" : ", "] [", "> <", "   "};
 string pbase[4] = {" : ", "\" \"", "___", "   "};
 
 int get_id(int *num) {
+    //12341234
     const int base = 10;
     int id = *num % base;
     if (id == 0 || id > 4) {
