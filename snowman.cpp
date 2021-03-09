@@ -8,6 +8,7 @@ using namespace std;
 const int NUM_PARTS = 8;
 const int INDEX_OFFSET = -1;
 const int NUM_LEVELS = 4;
+const int BASE10 = 10;
 
 const int max_bound = 99999999;
 const int min_bound = 10000000;
@@ -31,17 +32,6 @@ string ptorso[4] = {" : ", "] [", "> <", "   "};
 
 string pbase[4] = {" : ", "\" \"", "___", "   "};
 
-int get_id(int *num) {
-    //12341234
-    const int base = 10;
-    int id = *num % base;
-    if (id == 0 || id > 4) {
-        throw invalid_argument{"Invalid code : \'" + to_string(id) + "\' all characters must be between 1-4, included."};
-    }
-    *num /= base;
-    return id;
-}
-
 enum parts_id {
     base = 7,
     torso = 6,
@@ -53,7 +43,15 @@ enum parts_id {
     hat = 0,
 };
 
-// add the body part at each level!
+/**
+ * add each level of the snowman.
+ * level 0 : hat
+ * level 1 : face
+ * level 2 : torso
+ * level 3 : base
+ * 
+ * *output : is the return output. ( its getting changed each itteration )
+ **/
 void add_body_part(const int parts[], int level, bool frontspace, string *output) {
     if (level == 0) {
         // add hat
@@ -79,14 +77,25 @@ void add_body_part(const int parts[], int level, bool frontspace, string *output
 
 namespace ariel {
 string snowman(int input) {
+    // check if input too long or too short.
     if (input < min_bound || input > max_bound) {
         throw invalid_argument{"Invalid code \'" + to_string(input) + "\'"};
     }
-    int parts[NUM_PARTS] = {0};
-    for (int i = 0; i < NUM_PARTS; i++) {
-        parts[NUM_PARTS - i - 1] = get_id(&input) + INDEX_OFFSET;
+    // create an array that will hold the part indecies.
+    int parts[NUM_PARTS];
+    int input_copy = input;
+    // get the number for each part, throw error if number part is invalid.
+    for (int i = NUM_PARTS - 1; i >= 0; i--) {
+        int id = input_copy % BASE10;
+        if (id == 0 || id > 4) {
+            throw invalid_argument{"Invalid code \'" + to_string(input) + "\'"};
+        }
+        parts[i] = id + INDEX_OFFSET;
+        input_copy /= BASE10;
     }
 
+    // save if we need or dont need a space at the beggining of the snowman on each row.
+    // a.k.a if there is a hand or no hand.
     bool spaces = parts[parts_id::left_arm] != 4 + INDEX_OFFSET;
 
     string s_output;
