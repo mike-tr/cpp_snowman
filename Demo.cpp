@@ -12,6 +12,15 @@
 using namespace std;
 
 int main() {
+
+    int k = 10;
+    cin >> k;
+
+    int arr[k];
+    for (int i = 0; i < k; i++) {
+        arr[i] = i;
+        cout << arr[i] << endl;
+    }
     cout << ariel::snowman(11114411) << endl; /* Should print:
 _===_
 (.,.)
