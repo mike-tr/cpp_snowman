@@ -1,4 +1,5 @@
 #include "snowman.hpp"
+#include <array>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -15,22 +16,23 @@ const int min_bound = 10000000;
 
 // All the bases for the snowman, as had might have to lines we seperate it into 2 sets, those with exatra space,
 // and those without an extra space.
-string phats_full[4] = {" _===_\n", "  ___\n .....\n", "   _\n  /_\\\n", "  ___\n (_*_)\n"};
-string phats[4] = {"_===_\n", " ___\n .....\n", "  _\n /_\\\n", " ___\n(_*_)\n"};
 
-string pnose[4] = {",", ".", "_", " "};
+array<string, 4> phats_full = {" _===_\n", "  ___\n .....\n", "   _\n  /_\\\n", "  ___\n (_*_)\n"};
+array<string, 4> phats = {"_===_\n", " ___\n .....\n", "  _\n /_\\\n", " ___\n(_*_)\n"};
 
-string peye[4] = {".", "o", "O", "-"};
+array<string, 4> pnose = {",", ".", "_", " "};
 
-string pleft_arm_up[4] = {" ", "\\", " ", ""};
-string pleft_arm_down[4] = {"<", " ", "/", ""};
+array<string, 4> peye = {".", "o", "O", "-"};
 
-string pright_arm_up[4] = {"", "/", "", ""};
-string pright_arm_down[4] = {">", "", "\\", ""};
+array<string, 4> pleft_arm_up = {" ", "\\", " ", ""};
+array<string, 4> pleft_arm_down = {"<", " ", "/", ""};
 
-string ptorso[4] = {" : ", "] [", "> <", "   "};
+array<string, 4> pright_arm_up = {"", "/", "", ""};
+array<string, 4> pright_arm_down = {">", "", "\\", ""};
 
-string pbase[4] = {" : ", "\" \"", "___", "   "};
+array<string, 4> ptorso = {" : ", "] [", "> <", "   "};
+
+array<string, 4> pbase = {" : ", "\" \"", "___", "   "};
 
 enum parts_id {
     base = 7,
@@ -52,26 +54,26 @@ enum parts_id {
  * 
  * *output : is the return output. ( its getting changed each itteration )
  **/
-void add_body_part(const int parts[], int level, bool frontspace, string *output) {
+void add_body_part(const array<int, NUM_PARTS> parts, int level, bool frontspace, string *output) {
     if (level == 0) {
         // add hat
-        *output += frontspace ? phats_full[parts[hat]] : phats[parts[hat]];
+        *output += frontspace ? phats_full.at(parts[hat]) : phats.at(parts[hat]);
     } else if (level == 1) {
         // add face level
-        *output += pleft_arm_up[parts[left_arm]];                                                   // add left arm
-        *output += "(" + peye[parts[left_eye]] + pnose[parts[nose]] + peye[parts[right_eye]] + ")"; // add body
-        *output += pright_arm_up[parts[right_arm]] + "\n";                                          // add right arm
+        *output += pleft_arm_up.at(parts[left_arm]);                                                         // add left arm
+        *output += "(" + peye.at(parts[left_eye]) + pnose.at(parts[nose]) + peye.at(parts[right_eye]) + ")"; // add body
+        *output += pright_arm_up.at(parts[right_arm]) + "\n";                                                // add right arm
     } else if (level == 2) {
         // add torso level
-        *output += pleft_arm_down[parts[left_arm]];
-        *output += "(" + ptorso[parts[torso]] + ")";
-        *output += pright_arm_down[parts[right_arm]] + "\n";
+        *output += pleft_arm_down.at(parts[left_arm]);
+        *output += "(" + ptorso.at(parts[torso]) + ")";
+        *output += pright_arm_down.at(parts[right_arm]) + "\n";
     } else if (level == 3) {
         // add base level
         if (frontspace) {
             *output += " ";
         }
-        *output += "(" + pbase[parts[base]] + ")";
+        *output += "(" + pbase.at(parts[base]) + ")";
     }
 }
 
@@ -82,7 +84,7 @@ string snowman(int input) {
         throw invalid_argument{"Invalid code \'" + to_string(input) + "\'"};
     }
     // create an array that will hold the part indecies.
-    int parts[NUM_PARTS];
+    array<int, NUM_PARTS> parts{};
     int input_copy = input;
     // get the number for each part, throw error if number part is invalid.
     for (int i = NUM_PARTS - 1; i >= 0; i--) {
@@ -90,7 +92,7 @@ string snowman(int input) {
         if (id == 0 || id > 4) {
             throw invalid_argument{"Invalid code \'" + to_string(input) + "\'"};
         }
-        parts[i] = id + INDEX_OFFSET;
+        parts.at(i) = id + INDEX_OFFSET;
         input_copy /= BASE10;
     }
 
