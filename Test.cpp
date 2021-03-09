@@ -190,4 +190,12 @@ TEST_CASE("loop check") {
     }
 }
 
+#include <array>
+
+array<array<string, 2>, 3> kek = {{
+    {"lel", "kek"},
+    {"iji", "jiji"},
+    {"yuyu", "juju"},
+}}
+
 /* Add more test cases here */

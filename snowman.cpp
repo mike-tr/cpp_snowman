@@ -9,6 +9,7 @@ using namespace std;
 const int NUM_PARTS = 8;
 const int INDEX_OFFSET = -1;
 const int NUM_LEVELS = 4;
+const int NUM_DIFFERENT_PARTS = 4;
 const int BASE10 = 10;
 
 const int max_bound = 99999999;
@@ -17,22 +18,16 @@ const int min_bound = 10000000;
 // All the bases for the snowman, as had might have to lines we seperate it into 2 sets, those with exatra space,
 // and those without an extra space.
 
-array<string, 4> phats_full = {" _===_\n", "  ___\n .....\n", "   _\n  /_\\\n", "  ___\n (_*_)\n"};
-array<string, 4> phats = {"_===_\n", " ___\n .....\n", "  _\n /_\\\n", " ___\n(_*_)\n"};
-
-array<string, 4> pnose = {",", ".", "_", " "};
-
-array<string, 4> peye = {".", "o", "O", "-"};
-
-array<string, 4> pleft_arm_up = {" ", "\\", " ", ""};
-array<string, 4> pleft_arm_down = {"<", " ", "/", ""};
-
-array<string, 4> pright_arm_up = {"", "/", "", ""};
-array<string, 4> pright_arm_down = {">", "", "\\", ""};
-
-array<string, 4> ptorso = {" : ", "] [", "> <", "   "};
-
-array<string, 4> pbase = {" : ", "\" \"", "___", "   "};
+array<string, NUM_DIFFERENT_PARTS> phats_full = {" _===_\n", "  ___\n .....\n", "   _\n  /_\\\n", "  ___\n (_*_)\n"};
+array<string, NUM_DIFFERENT_PARTS> phats = {"_===_\n", " ___\n .....\n", "  _\n /_\\\n", " ___\n(_*_)\n"};
+array<string, NUM_DIFFERENT_PARTS> pnose = {",", ".", "_", " "};
+array<string, NUM_DIFFERENT_PARTS> peye = {".", "o", "O", "-"};
+array<string, NUM_DIFFERENT_PARTS> pleft_arm_up = {" ", "\\", " ", ""};
+array<string, NUM_DIFFERENT_PARTS> pleft_arm_down = {"<", " ", "/", ""};
+array<string, NUM_DIFFERENT_PARTS> pright_arm_up = {"", "/", "", ""};
+array<string, NUM_DIFFERENT_PARTS> pright_arm_down = {">", "", "\\", ""};
+array<string, NUM_DIFFERENT_PARTS> ptorso = {" : ", "] [", "> <", "   "};
+array<string, NUM_DIFFERENT_PARTS> pbase = {" : ", "\" \"", "___", "   "};
 
 enum parts_id {
     base = 7,
