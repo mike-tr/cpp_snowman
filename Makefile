@@ -1,32 +1,32 @@
 #!make -f
 
 CXX=clang++-9 
-CXXFLAGS=-std=c++2a -Werror
+CXXFLAGS=-std=c++2a
 
-HEADERS=snowman.hpp
 OBJECTS=snowman.o
+SOURCES=snowman.cpp
 
-run: demo
+run: test
 	./$^
 
-demo: Demo.o $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $^ -o demo
-
-run_test: test
-	./test
-
-test: TestCounter.o Test.o $(OBJECTS)
+test: TestRunner.o StudentTest1.o StudentTest2.o StudentTest3.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o test
-curl -SL http://releases.llvm.org/9.0.0/clang+llvm-9.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz | tar -xJC .
-tidy:
-	clang-tidy snowman.cpp -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,hicpp-*,performance-*,portability-*,readability-* --warnings-as-errors=-* --
 
 %.o: %.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) --compile $< -o $@
 
-Test2.cpp:
-	curl https://raw.githubusercontent.com/cpp-exercises/snowman-a/master/TestExample.cpp > Test2.cpp
+StudentTest1.cpp:  # Yosef Danan
+	curl https://raw.githubusercontent.com/YD5463/System-Programing-2/master/Test.cpp > $@
+
+StudentTest2.cpp: # Shlomo Glick
+	curl https://raw.githubusercontent.com/shlomog12/ex1_partA/main/Test.cpp > $@
+
+StudentTest3.cpp: # Eviatar Nachshoni
+	curl https://raw.githubusercontent.com/EN555/EX1-c-/master/Test.cpp > $@
+
+tidy:
+	clang-tidy $(SOURCES) -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-* --warnings-as-errors=* --
 
 clean:
-	rm -f *.o demo test
-	rm -f Test2.cpp
+	rm -f *.o test
+	rm -f StudentTest*.cpp

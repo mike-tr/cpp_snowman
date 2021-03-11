@@ -22,10 +22,13 @@ array<string, NUM_DIFFERENT_PARTS> phats_full = {" _===_\n", "  ___\n .....\n", 
 array<string, NUM_DIFFERENT_PARTS> phats = {"_===_\n", " ___\n .....\n", "  _\n /_\\\n", " ___\n(_*_)\n"};
 array<string, NUM_DIFFERENT_PARTS> pnose = {",", ".", "_", " "};
 array<string, NUM_DIFFERENT_PARTS> peye = {".", "o", "O", "-"};
+
 array<string, NUM_DIFFERENT_PARTS> pleft_arm_up = {" ", "\\", " ", ""};
 array<string, NUM_DIFFERENT_PARTS> pleft_arm_down = {"<", " ", "/", ""};
+
 array<string, NUM_DIFFERENT_PARTS> pright_arm_up = {"", "/", "", ""};
 array<string, NUM_DIFFERENT_PARTS> pright_arm_down = {">", "", "\\", ""};
+
 array<string, NUM_DIFFERENT_PARTS> ptorso = {" : ", "] [", "> <", "   "};
 array<string, NUM_DIFFERENT_PARTS> pbase = {" : ", "\" \"", "___", "   "};
 
